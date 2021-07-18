@@ -65,15 +65,18 @@ namespace SelectServer
                 XElement elconfig = document.Element("Configurations");
                 if (checkelemnt(elconfig) == false)
                 {
-                    document.Add(new XElement("Configurations"));
+                    document.Add(new XElement("Configurations", new XElement("POSServer",connectionstring)));
                     document.Save(path);
                 }
+                 else
+                 {
 
                 if (elconfig.Element("POSServer") == null)
                 {
                     elconfig.Add(new XElement("POSServer", connectionString));
                 }
                 else elconfig.Element("POSServer").Value = connectionString;
+}
                 document.Save(path);
 
             }
